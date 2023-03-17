@@ -11,12 +11,14 @@ const sampleTask: Task = {
   id: uuid(),
   title: "Do things",
   description: "Lorem ipsum dolor sit amet",
+  due: new Date(),
   complete: false,
 };
 const sampleTaskTwo: Task = {
   id: uuid(),
   title: "Do other things",
   description: "Hi this is interesting",
+  due: new Date(),
   complete: true,
 };
 
