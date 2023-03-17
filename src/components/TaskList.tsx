@@ -1,6 +1,7 @@
 import { Divider, VStack } from "@chakra-ui/react";
 import React from "react";
 import { Task } from "../types/Task";
+import TaskListHeader from "./TaskListHeader";
 import TaskListRow from "./TaskListRow";
 
 interface Props {
@@ -13,6 +14,7 @@ function TaskList(props: Props) {
 
   return (
     <VStack w="full">
+      <TaskListHeader />
       <Divider />
       {tasks.map((task: Task) => {
         return (
