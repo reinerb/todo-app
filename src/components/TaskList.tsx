@@ -12,7 +12,7 @@ function TaskList(props: Props) {
   const { tasks, toggleComplete } = props;
 
   return (
-    <VStack>
+    <VStack w="full">
       {tasks.map((task: Task) => {
         return (
           <TaskListRow

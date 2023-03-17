@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useState } from "react";
 import { v4 as uuid } from "uuid";
-import { ChakraProvider, theme } from "@chakra-ui/react";
+import { ChakraProvider, Container, Heading, theme } from "@chakra-ui/react";
 import { Routes, Route } from "react-router-dom";
 
 import { Task } from "./types/Task";
@@ -33,15 +33,18 @@ export const App = () => {
 
   return (
     <ChakraProvider theme={theme}>
-      <Routes>
-        <Route
-          path="/"
-          element={<TaskList tasks={tasks} toggleComplete={toggleComplete} />}
-        />
-        <Route path="/new" />
-        <Route path=":taskId" />
-        <Route path=":taskId/edit" />
-      </Routes>
+      <Container maxW="container.md" padding={0}>
+        <Routes>
+          <Route
+            path="/"
+            element={<TaskList tasks={tasks} toggleComplete={toggleComplete} />}
+          />
+          <Route path="/new" element={<Heading>New Task</Heading>} />
+          <Route path=":taskId" element={<Heading>Task Page</Heading>} />
+          <Route path=":taskId/edit" />
+          <Route path="*" />
+        </Routes>
+      </Container>
     </ChakraProvider>
   );
 };
