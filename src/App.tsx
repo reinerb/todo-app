@@ -3,9 +3,9 @@ import { useState } from "react";
 import { v4 as uuid } from "uuid";
 import { ChakraProvider, theme } from "@chakra-ui/react";
 import { Routes, Route } from "react-router-dom";
-import TaskListRow from "./components/TaskListRow";
 
 import { Task } from "./types/Task";
+import TaskList from "./components/TaskList";
 
 const sampleTask: Task = {
   id: uuid(),
@@ -36,19 +36,7 @@ export const App = () => {
       <Routes>
         <Route
           path="/"
-          element={
-            <>
-              {tasks.map((task: Task) => {
-                return (
-                  <TaskListRow
-                    key={task.id}
-                    task={task}
-                    toggleComplete={toggleComplete}
-                  />
-                );
-              })}
-            </>
-          }
+          element={<TaskList tasks={tasks} toggleComplete={toggleComplete} />}
         />
         <Route path="/new" />
         <Route path=":taskId" />

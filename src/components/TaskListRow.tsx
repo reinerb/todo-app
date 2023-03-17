@@ -19,9 +19,8 @@ function TaskListRow(props: Props) {
         aria-label="Mark complete"
         isChecked={task.complete}
         onChange={toggleComplete}
-      >
-        {task.title}
-      </Checkbox>
+      />
+      <Text> {task.title}</Text>
       <IconButton aria-label="Edit task" icon={<EditIcon />} />
       <IconButton aria-label="Delete task" icon={<DeleteIcon />} />
     </HStack>
