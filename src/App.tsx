@@ -33,7 +33,7 @@ export const App = () => {
 
   return (
     <ChakraProvider theme={theme}>
-      <Container maxW="container.md" padding={0}>
+      <Container maxW="container.lg" py={10}>
         <Routes>
           <Route
             path="/"
