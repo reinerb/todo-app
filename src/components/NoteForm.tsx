@@ -9,6 +9,7 @@ import {
   Textarea,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
+import { useNavigate, Link as RouterLink } from "react-router-dom";
 import { Task } from "../types/Task";
 
 interface Props {
@@ -22,6 +23,8 @@ function NoteForm(props: Props) {
   const [description, setDescription] = useState(task.description);
   const [due, setDue] = useState(task.due);
 
+  const navigate = useNavigate();
+
   // Handles form submission by making a new task
   const handleSubmit = () => {
     const newTask = {
@@ -33,6 +36,8 @@ function NoteForm(props: Props) {
     };
 
     updateTasks(newTask);
+
+    navigate("/");
   };
 
   return (
@@ -47,13 +52,12 @@ function NoteForm(props: Props) {
             />
           </FormControl>
         </GridItem>
-
         <GridItem colSpan={1}>
           <FormControl>
             <FormLabel>Due Date</FormLabel>
             <Input
-              type="datetime-local"
-              value={due.toString()}
+              type="date"
+              value={due.toISOString().substring(0, 10)}
               onChange={(event) => setDue(new Date(event.target.value))}
             />
           </FormControl>
@@ -69,7 +73,9 @@ function NoteForm(props: Props) {
         </GridItem>
         <GridItem colSpan={1} colStart={2} justifySelf="end">
           <HStack>
-            <Button variant="outline">Cancel</Button>
+            <RouterLink to="..">
+              <Button variant="outline">Cancel</Button>
+            </RouterLink>
             <Button type="submit">Submit</Button>
           </HStack>
         </GridItem>
