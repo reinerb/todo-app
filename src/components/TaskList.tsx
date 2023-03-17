@@ -7,10 +7,11 @@ import TaskListRow from "./TaskListRow";
 interface Props {
   tasks: Task[];
   toggleComplete: (event: React.ChangeEvent) => void;
+  deleteTask: (event: React.MouseEvent) => void;
 }
 
 function TaskList(props: Props) {
-  const { tasks, toggleComplete } = props;
+  const { tasks, toggleComplete, deleteTask } = props;
 
   return (
     <VStack w="full">
@@ -22,6 +23,7 @@ function TaskList(props: Props) {
             key={task.id}
             task={task}
             toggleComplete={toggleComplete}
+            deleteTask={deleteTask}
           />
         );
       })}

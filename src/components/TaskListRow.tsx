@@ -7,10 +7,11 @@ interface Props {
   key: string;
   task: Task;
   toggleComplete: (event: React.ChangeEvent) => void;
+  deleteTask: (event: React.MouseEvent) => void;
 }
 
 function TaskListRow(props: Props) {
-  const { task, toggleComplete } = props;
+  const { task, toggleComplete, deleteTask } = props;
 
   return (
     <Grid
@@ -28,9 +29,11 @@ function TaskListRow(props: Props) {
       <Text> {task.title}</Text>
       <IconButton aria-label="Edit task" icon={<EditIcon />} />
       <IconButton
+        id={task.id}
         aria-label="Delete task"
         icon={<DeleteIcon />}
         color="red.500"
+        onClick={deleteTask}
       />
     </Grid>
   );

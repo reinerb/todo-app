@@ -1,7 +1,13 @@
 import * as React from "react";
 import { useState } from "react";
 import { v4 as uuid } from "uuid";
-import { ChakraProvider, Container, Heading, theme } from "@chakra-ui/react";
+import {
+  ChakraProvider,
+  Container,
+  Heading,
+  IconButton,
+  theme,
+} from "@chakra-ui/react";
 import { Routes, Route } from "react-router-dom";
 
 import { Task } from "./types/Task";
@@ -31,13 +37,27 @@ export const App = () => {
     setTasks(updatedTasks);
   };
 
+  // Deletes the task with the same ID as the given event
+  const deleteTask = (e: React.MouseEvent) => {
+    const updatedTasks = tasks.filter(
+      (task: Task) => task.id !== (e.target as HTMLButtonElement).id
+    );
+    setTasks(updatedTasks);
+  };
+
   return (
     <ChakraProvider theme={theme}>
       <Container maxW="container.lg" py={10}>
         <Routes>
           <Route
             path="/"
-            element={<TaskList tasks={tasks} toggleComplete={toggleComplete} />}
+            element={
+              <TaskList
+                tasks={tasks}
+                toggleComplete={toggleComplete}
+                deleteTask={deleteTask}
+              />
+            }
           />
           <Route path="/new" element={<Heading>New Task</Heading>} />
           <Route path=":taskId" element={<Heading>Task Page</Heading>} />
