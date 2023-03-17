@@ -25,6 +25,11 @@ const sampleTaskTwo: Task = {
 export const App = () => {
   const [tasks, setTasks] = useState<Task[]>([sampleTask, sampleTaskTwo]);
 
+  // Adds a new note with the given values
+  const newTask = (task: Task) => {
+    setTasks([...tasks, task]);
+  };
+
   // Toggles the completeness of the task with the same ID as the given event
   const toggleComplete = (e: React.ChangeEvent) => {
     const updatedTasks = tasks.map((task: Task) =>
