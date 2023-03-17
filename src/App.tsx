@@ -1,13 +1,7 @@
 import * as React from "react";
 import { useState } from "react";
 import { v4 as uuid } from "uuid";
-import {
-  ChakraProvider,
-  Container,
-  Heading,
-  IconButton,
-  theme,
-} from "@chakra-ui/react";
+import { ChakraProvider, Container, Heading, theme } from "@chakra-ui/react";
 import { Routes, Route } from "react-router-dom";
 
 import { Task } from "./types/Task";
