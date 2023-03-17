@@ -25,9 +25,21 @@ const sampleTaskTwo: Task = {
 export const App = () => {
   const [tasks, setTasks] = useState<Task[]>([sampleTask, sampleTaskTwo]);
 
-  // Adds a new note with the given values
-  const newTask = (task: Task) => {
-    setTasks([...tasks, task]);
+  // Updates the task list
+  // If a task with the given ID exists, replace it
+  // If not, add a new task
+  const updateTasks = (newTask: Task) => {
+    let updated = false;
+    const updatedTasks = tasks.map((task: Task) => {
+      if (task.id === newTask.id) {
+        updated = true;
+        return newTask;
+      } else {
+        return task;
+      }
+    });
+
+    setTasks(updated ? updatedTasks : [...tasks, newTask]);
   };
 
   // Toggles the completeness of the task with the same ID as the given event
