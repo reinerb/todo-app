@@ -16,7 +16,7 @@ function TaskListRow(props: Props) {
   return (
     <Grid
       width="full"
-      templateColumns="auto 1fr auto auto"
+      templateColumns="auto 1fr auto auto auto"
       gap="1rem"
       alignItems="center"
     >
@@ -26,7 +26,8 @@ function TaskListRow(props: Props) {
         isChecked={task.complete}
         onChange={toggleComplete}
       />
-      <Text> {task.title}</Text>
+      <Text>{task.title}</Text>
+      <Text>Due: {task.due.toLocaleDateString()}</Text>
       <IconButton aria-label="Edit task" icon={<EditIcon />} />
       <IconButton
         id={task.id}
