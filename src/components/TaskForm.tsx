@@ -17,7 +17,7 @@ interface Props {
   updateTasks: (task: Task) => void;
 }
 
-function NoteForm(props: Props) {
+function TaskForm(props: Props) {
   const { task, updateTasks } = props;
   const [title, setTitle] = useState(task.title);
   const [description, setDescription] = useState(task.description);
@@ -84,4 +84,4 @@ function NoteForm(props: Props) {
   );
 }
 
-export default NoteForm;
+export default TaskForm;

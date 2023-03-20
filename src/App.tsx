@@ -6,7 +6,7 @@ import { Routes, Route } from "react-router-dom";
 
 import { Task } from "./types/Task";
 import TaskList from "./components/TaskList";
-import NoteForm from "./components/NoteForm";
+import TaskForm from "./components/TaskForm";
 
 const sampleTask: Task = {
   id: uuid(),
@@ -73,7 +73,21 @@ export const App = () => {
               />
             }
           />
-          <Route path="/new" element={<NoteForm task={{id: uuid(), title: '', description: '', due: new Date(), complete: false}} updateTasks={updateTasks} />} />
+          <Route
+            path="/new"
+            element={
+              <TaskForm
+                task={{
+                  id: uuid(),
+                  title: "",
+                  description: "",
+                  due: new Date(),
+                  complete: false,
+                }}
+                updateTasks={updateTasks}
+              />
+            }
+          />
           <Route path=":taskId" element={<Heading>Task Page</Heading>} />
           <Route path=":taskId/edit" />
           <Route path="*" />
