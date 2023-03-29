@@ -9,7 +9,7 @@ import {
   Textarea,
 } from '@chakra-ui/react';
 import React, { useState } from 'react';
-import { useNavigate, Link as RouterLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Task } from '../types/Task';
 
 interface Props {
@@ -29,7 +29,8 @@ function TaskForm(props: Props) {
   const goBack = () => navigate(-1);
 
   // Handles form submission by making a new task
-  const handleSubmit = () => {
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
     const newTask = {
       id: task.id,
       title,
