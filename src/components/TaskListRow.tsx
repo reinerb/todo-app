@@ -2,6 +2,7 @@ import { Button, Checkbox, Grid, Text } from '@chakra-ui/react';
 import { Link as RouterLink } from 'react-router-dom';
 import React from 'react';
 import { Task } from '../types/Task';
+import { daysUntil } from '../functions/daysUntil';
 
 interface Props {
   key: string;
@@ -12,6 +13,8 @@ interface Props {
 
 function TaskListRow(props: Props) {
   const { task, toggleComplete, deleteTask } = props;
+
+  const daysUntilDue = daysUntil(task.due);
 
   return (
     <Grid
@@ -29,7 +32,9 @@ function TaskListRow(props: Props) {
       <RouterLink to={`/${task.id}`}>
         <Text>{task.title}</Text>
       </RouterLink>
-      <Text>Due: {task.due.toLocaleDateString()}</Text>
+      <Text color={daysUntilDue < 0 ? 'red' : 'default'}>
+        Due: {task.due.toLocaleDateString()}
+      </Text>
       <RouterLink to={`/${task.id}/edit`}>
         <Button aria-label={'edit-task'}>Edit</Button>
       </RouterLink>
