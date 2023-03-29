@@ -2,12 +2,13 @@ import * as React from 'react';
 import { useState } from 'react';
 import { v4 as uuid } from 'uuid';
 import { ChakraProvider, Container, theme } from '@chakra-ui/react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 
 import { Task } from './types/Task';
 import TaskList from './components/TaskList';
 import TaskForm from './components/TaskForm';
 import TaskDisplay from './components/TaskDisplay';
+import EditTask from './components/EditTask';
 
 const sampleTask: Task = {
   id: uuid(),
@@ -92,7 +93,7 @@ export const App = () => {
               />
             }
           />
-          <Route path=':taskId'>
+          <Route path='/:taskId'>
             <Route
               index
               element={
@@ -102,9 +103,20 @@ export const App = () => {
                 />
               }
             />
-            <Route path=':taskid/edit' />
+            <Route
+              path='edit'
+              element={
+                <EditTask
+                  tasks={tasks}
+                  updateTasks={updateTasks}
+                />
+              }
+            />
           </Route>
-          <Route path='*' />
+          <Route
+            path='*'
+            element={<Navigate to={'/'} />}
+          />
         </Routes>
       </Container>
     </ChakraProvider>
