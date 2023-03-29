@@ -1,7 +1,7 @@
-import { EditIcon, DeleteIcon } from "@chakra-ui/icons";
-import { Checkbox, Grid, IconButton, Text } from "@chakra-ui/react";
-import React from "react";
-import { Task } from "../types/Task";
+import { Button, Checkbox, Grid, Text } from '@chakra-ui/react';
+import { Link as RouterLink } from 'react-router-dom';
+import React from 'react';
+import { Task } from '../types/Task';
 
 interface Props {
   key: string;
@@ -15,27 +15,32 @@ function TaskListRow(props: Props) {
 
   return (
     <Grid
-      width="full"
-      templateColumns="auto 1fr auto auto auto"
-      gap="1rem"
-      alignItems="center"
+      width='full'
+      templateColumns='auto 1fr auto auto auto'
+      gap='1rem'
+      alignItems='center'
     >
       <Checkbox
         id={task.id}
-        aria-label="Mark complete"
+        aria-label='Mark complete'
         isChecked={task.complete}
         onChange={toggleComplete}
       />
-      <Text>{task.title}</Text>
+      <RouterLink to={`/${task.id}`}>
+        <Text>{task.title}</Text>
+      </RouterLink>
       <Text>Due: {task.due.toLocaleDateString()}</Text>
-      <IconButton aria-label="Edit task" icon={<EditIcon />} />
-      <IconButton
+      <RouterLink to={`/${task.id}/edit`}>
+        <Button aria-label={'edit-task'}>Edit</Button>
+      </RouterLink>
+      <Button
         id={task.id}
-        aria-label="Delete task"
-        icon={<DeleteIcon />}
-        color="red.500"
+        aria-label='Delete task'
+        colorScheme='red'
         onClick={deleteTask}
-      />
+      >
+        Delete
+      </Button>
     </Grid>
   );
 }

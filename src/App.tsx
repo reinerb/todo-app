@@ -1,24 +1,25 @@
-import * as React from "react";
-import { useState } from "react";
-import { v4 as uuid } from "uuid";
-import { ChakraProvider, Container, Heading, theme } from "@chakra-ui/react";
-import { Routes, Route } from "react-router-dom";
+import * as React from 'react';
+import { useState } from 'react';
+import { v4 as uuid } from 'uuid';
+import { ChakraProvider, Container, theme } from '@chakra-ui/react';
+import { Routes, Route } from 'react-router-dom';
 
-import { Task } from "./types/Task";
-import TaskList from "./components/TaskList";
-import TaskForm from "./components/TaskForm";
+import { Task } from './types/Task';
+import TaskList from './components/TaskList';
+import TaskForm from './components/TaskForm';
+import TaskDisplay from './components/TaskDisplay';
 
 const sampleTask: Task = {
   id: uuid(),
-  title: "Do things",
-  description: "Lorem ipsum dolor sit amet",
+  title: 'Do things',
+  description: 'Lorem ipsum dolor sit amet',
   due: new Date(),
   complete: false,
 };
 const sampleTaskTwo: Task = {
   id: uuid(),
-  title: "Do other things",
-  description: "Hi this is interesting",
+  title: 'Do other things',
+  description: 'Hi this is interesting',
   due: new Date(),
   complete: true,
 };
@@ -61,10 +62,13 @@ export const App = () => {
 
   return (
     <ChakraProvider theme={theme}>
-      <Container maxW="container.lg" py={10}>
+      <Container
+        maxW='container.lg'
+        py={10}
+      >
         <Routes>
           <Route
-            path="/"
+            path='/'
             element={
               <TaskList
                 tasks={tasks}
@@ -74,13 +78,13 @@ export const App = () => {
             }
           />
           <Route
-            path="/new"
+            path='/new'
             element={
               <TaskForm
                 task={{
                   id: uuid(),
-                  title: "",
-                  description: "",
+                  title: '',
+                  description: '',
                   due: new Date(),
                   complete: false,
                 }}
@@ -88,9 +92,19 @@ export const App = () => {
               />
             }
           />
-          <Route path=":taskId" element={<Heading>Task Page</Heading>} />
-          <Route path=":taskId/edit" />
-          <Route path="*" />
+          <Route path=':taskId'>
+            <Route
+              index
+              element={
+                <TaskDisplay
+                  tasks={tasks}
+                  deleteTask={deleteTask}
+                />
+              }
+            />
+            <Route path=':taskid/edit' />
+          </Route>
+          <Route path='*' />
         </Routes>
       </Container>
     </ChakraProvider>
