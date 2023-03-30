@@ -31,6 +31,7 @@ function TaskForm(props: Props) {
   // Handles form submission by making a new task
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
+    console.log(due);
     const newTask = {
       id: task.id,
       title,
@@ -67,7 +68,19 @@ function TaskForm(props: Props) {
             <Input
               type='date'
               value={due.toISOString().substring(0, 10)}
-              onChange={(event) => setDue(new Date(event.target.value))}
+              onChange={(event) => {
+                const value = event.target.value.split('-');
+                const date = new Date(
+                  parseInt(value[0]),
+                  parseInt(value[1]) - 1,
+                  parseInt(value[2]),
+                  due.getHours(),
+                  due.getMinutes(),
+                  due.getSeconds()
+                );
+                console.log(date);
+                setDue(date);
+              }}
             />
           </FormControl>
         </GridItem>
