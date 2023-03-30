@@ -5,28 +5,16 @@ import { ChakraProvider, Container, theme } from '@chakra-ui/react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 
 import { Task } from './types/Task';
+import { sampleTasks } from './functions/sampleTasks';
+import { useLocalStorage } from './hooks/useLocalStorage';
+
 import TaskList from './components/TaskList';
 import TaskForm from './components/TaskForm';
 import TaskDisplay from './components/TaskDisplay';
 import EditTask from './components/EditTask';
 
-const sampleTask: Task = {
-  id: uuid(),
-  title: 'Do things',
-  description: 'Lorem ipsum dolor sit amet',
-  due: new Date(),
-  complete: false,
-};
-const sampleTaskTwo: Task = {
-  id: uuid(),
-  title: 'Do other things',
-  description: 'Hi this is interesting',
-  due: new Date(),
-  complete: true,
-};
-
 export const App = () => {
-  const [tasks, setTasks] = useState<Task[]>([sampleTask, sampleTaskTwo]);
+  const [tasks, setTasks] = useState<Task[]>(sampleTasks);
 
   // Updates the task list
   // If a task with the given ID exists, replace it
