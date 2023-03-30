@@ -3,6 +3,7 @@ import { Link as RouterLink, useNavigate, useParams } from 'react-router-dom';
 import React from 'react';
 import { Task } from '../types/Task';
 import { daysUntil } from '../functions/daysUntil';
+import { FaArrowLeft } from 'react-icons/fa';
 
 interface Props {
   tasks: Task[];
@@ -23,7 +24,11 @@ function TaskDisplay(props: Props) {
   };
 
   return (
-    <VStack w='full'>
+    <VStack
+      w='full'
+      align='start'
+      gap={3}
+    >
       <HStack
         w='full'
         justifyContent='space-between'
@@ -56,6 +61,9 @@ function TaskDisplay(props: Props) {
       >
         {task.description}
       </Text>
+      <RouterLink to='/'>
+        <Button leftIcon={<FaArrowLeft />}>Back to home</Button>
+      </RouterLink>
     </VStack>
   );
 }
