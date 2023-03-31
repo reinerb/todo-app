@@ -14,7 +14,7 @@ const sampleTaskTwo: Task = {
   title: 'Mark a task as complete!',
   description: 'Click the checkbox next to a task to mark it as complete.',
   due: new Date(),
-  complete: true,
+  complete: false,
 };
 
 const sampleTaskThree: Task = {
@@ -23,7 +23,7 @@ const sampleTaskThree: Task = {
   description:
     'Click the edit button next to a task, or on its description, to edit its details.',
   due: new Date(),
-  complete: true,
+  complete: false,
 };
 
 const sampleTaskFour: Task = {
@@ -31,7 +31,7 @@ const sampleTaskFour: Task = {
   title: 'Delete a task!',
   description: 'Click the delete button to delete tasks you no longer need.',
   due: new Date(),
-  complete: true,
+  complete: false,
 };
 
 export const sampleTasks = [
