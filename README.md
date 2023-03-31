@@ -21,4 +21,4 @@ A simple to do list application, built to better understand CRUD operations.
 
 - Allow users to sort tasks in the main list
 - Use categories to group and sort tasks
-- Make full-stack, using NextJS and Firebase
+- Refactor as a full-stack application, using NextJS and Firebase
