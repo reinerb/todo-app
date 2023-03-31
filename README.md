@@ -5,7 +5,7 @@ A simple to do list application, built to better understand CRUD operations.
 ## Stack
 
 - React
-- (ChakraUI)[https://chakra-ui.com/]
+- [ChakraUI](https://chakra-ui.com/)
 
 ## What I Learned
 
